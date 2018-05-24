@@ -31,11 +31,16 @@
 		.gre { background-color: #3f0; }
 		.blu { background-color: #09f; }
 		.pur { background-color: #63f; }
+		#click-to-start {
+			color: white;
+			font-size: 5em;
+		}
 	</style>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
 <body>
 	<noscript>This nyan cat requires JavaScript to be enabled.</noscript>
+	<div id="click-to-start">Click anywhere to start</div>
 	<audio id="intro" src="intro.ogg"></audio>
 	<audio id="loop" src="loop.ogg" preload="auto"></audio>
 	<div id="catoutwrap">
@@ -158,8 +163,12 @@
 
 	$(document).ready(function()
 	{
-		$('#intro').trigger('play');
-		$('#intro').bind('ended', playNyan);
+		$(document.body).one('click', function()
+		{
+			$('#click-to-start').remove();
+			$('#intro').trigger('play');
+			$('#intro').bind('ended', playNyan);
+		});
 	});
 	</script>
 </body>
